@@ -1,5 +1,5 @@
-fn calculator(val_1: i32, val_2: i32, opr: String) -> (i32, String) {
-    match opr.as_str() {
+fn calculator(val_1: i32, val_2: i32, opr: &str) -> (i32, String) {
+    match opr {
         "+" => (val_1 + val_2, String::from("+")),
         "-" => (val_1 - val_2, String::from("-")),
         "*" => (val_1 * val_2, String::from("*")),
@@ -16,7 +16,7 @@ fn calculator(val_1: i32, val_2: i32, opr: String) -> (i32, String) {
 fn main() {
     let x = 2;
     let y = 0;
-    let operator = String::from("l");
+    let operator = "l";
     let result = calculator(x, y, operator);
     println!("{} {} {} = {}", x, result.1, y, result.0);
 }

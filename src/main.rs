@@ -1,22 +1,26 @@
-fn calculator(val_1: i32, val_2: i32, opr: &str) -> (i32, String) {
+fn calculator(val_1: i32, val_2: i32, opr: &str) -> Result<i32, &str> {
     match opr {
-        "+" => (val_1 + val_2, String::from("+")),
-        "-" => (val_1 - val_2, String::from("-")),
-        "*" => (val_1 * val_2, String::from("*")),
+        "+" => Ok(val_1 + val_2),
+        "-" => Ok(val_1 - val_2),
+        "*" => Ok(val_1 * val_2),
         "/" => {
             if val_2 == 0 {
-                return (0, String::from("Cannot divide by zero!"));
+                return Err("Cannot divide by zero!");
             }
-        (val_1 / val_2, String::from("/"))
+        Ok(val_1 / val_2)
         },
-        _ => (0, String::from("Invalid operator")),
+        _ => Err("Invalid operator"),
     }
 }
 
 fn main() {
     let x = 2;
     let y = 0;
-    let operator = "l";
+    let operator = "&";
     let result = calculator(x, y, operator);
-    println!("{} {} {} = {}", x, result.1, y, result.0);
+    if result.is_ok() {
+    println!("{} {} {} = {:?}", x, operator, y, result.unwrap());
+    } else {
+        println!("{:#?}", result.err().unwrap());
+    }
 }

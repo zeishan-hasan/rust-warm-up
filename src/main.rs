@@ -40,7 +40,7 @@ fn main() {
     
     let result = calculator(input_1, input_2, input_op);
     if result.is_ok() {
-    println!("Result:\n{} {} {} = {}", input_1, input_op, input_2, result.unwrap());
+    println!("Result:\n{} {} {} = {:.2}", input_1, input_op, input_2, result.unwrap());
     } else {
         println!("{:#?}", result.err().unwrap());
     }

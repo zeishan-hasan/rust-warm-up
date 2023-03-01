@@ -1,23 +1,15 @@
 fn main() {
-    let string_1 = gives_ownership();
-    let string_2 = String::from("Welcome");
-    let stirng_3 = takes_and_gives_back(string_2);
+    let number_1:f32 = 3.45;
+    let number_2:f32 = takes_and_gives_back(number_1);
 
-    println!("{}", string_1);
+    // Since the float (and also all integer, boolean, characte) type
+    // has the copy trait the below line won't produce error as the ownership
+    // is not transferred to takes_and_gives_back()rather shared with it.
+    println!("{number_1}");
 
-    // This will cause error since string_2 is moved to 'takes_and_gives_back()'
-    // and string type does not have a copy trait.
-    // println!("{}", string_2);
-    
-    println!("{}", stirng_3);
-
+    println!("{number_2}");
 }
 
-fn gives_ownership() -> String {
-    let some_string = String::from("This is from gives_ownership().");
-    some_string
-}
-
-fn takes_and_gives_back(a_string: String) -> String {
-    a_string
+fn takes_and_gives_back(number: f32) -> f32 {
+    number
 }

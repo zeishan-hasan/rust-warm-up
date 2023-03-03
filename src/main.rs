@@ -1,15 +1,20 @@
-fn main() {
-    let number_1:f32 = 3.45;
-    let number_2:f32 = takes_and_gives_back(number_1);
+fn largest<T: std::cmp::PartialOrd + Copy>(list: &[T]) -> T {
+    let mut largest = list[0];
 
-    // Since the float (and also all integer, boolean, characte) type
-    // has the copy trait the below line won't produce error as the ownership
-    // is not transferred to takes_and_gives_back()rather shared with it.
-    println!("{number_1}");
+    for &item in list {
+        if item > largest {
+            largest = item;
+        }
+    }
 
-    println!("{number_2}");
+    largest
 }
 
-fn takes_and_gives_back(number: f32) -> f32 {
-    number
+fn main() {
+    let int_list = vec![34, 50, 25, 100, 65];
+    let float_list = vec![34.2, 50.23, 25.25, 100.96, 65.88];
+    let result = largest(&int_list);
+    println!("The largest element is {result}");
+    let result = largest(&float_list);
+    println!("The largest element is {result}");
 }
